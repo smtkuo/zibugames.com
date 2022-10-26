@@ -11,108 +11,9 @@ const indexController = (new bilgisam()).get({
 	project: "./Projects/GamePlatform/controllers/index"
 })
 
-exports.index = (req, res, next) => {
-	var query = {};
-	var data = {
-		breadcrumbs: []
-	}
-	
-	// Default Meta
-	data['meta'] = {
-		title: "All Games",
-		description: this.title+": latest games, best games, all games...",
-		url: process.env.PROJECT_Main+"/"
-	}
-	data["breadcrumbs"].push(data['meta'])
-
-	if(req.params.category != null){
-		query.categorysearch = req.params.category
-		data['meta'] = {
-			title: query.categorysearch + " Games - Category",
-			description: "Game category: "+query.categorysearch+" latest games, "+query.categorysearch+" best games, "+query.categorysearch+" all games...",
-			url: process.env.PROJECT_Main+"/cat/"+query.categorysearch
-		}
-		data["breadcrumbs"].push(data['meta'])
-
-		if(req.params.page != null && parseInt(req.params.page)){
-			query.pageNum = req.params.page
-		}
-	}
-
-	if(req.params.tag != null){
-		query.tagsearch = req.params.tag
-		data['meta'] = {
-			title: query.tagsearch + " Games - Tag",
-			description: "Game Tags: "+query.tagsearch+" games. "+query.tagsearch+" latest games, "+query.tagsearch+" best games, "+query.tagsearch+" all games...",
-			url: process.env.PROJECT_Main+"/tag/"+query.tagsearch
-		}
-		data["breadcrumbs"].push(data['meta'])
-		if(req.params.page != null && parseInt(req.params.page)){
-			query.pageNum = req.params.page
-		}
-	}
-
-	if(req.params.q != null){
-		query.parameter = req.params.q.split("-")
-		query.select = query.parameter[0]
-		query.q = query.parameter[1]
-
-		
-		if(query.select == "page"){
-
-			data['meta'] = {
-				title: query.q + " Games - Page: "+query.q,
-				description: "Page: "+query.q+"."+query.q+" games.",
-				url: process.env.PROJECT_Main+"/"+req.params.q
-			}
-			data["breadcrumbs"].push(data['meta'])
-			query.pageNum = query.q
-		}else{
-			query.notfound = 1
-		}
-	}
-
-	if(req.query.q != null){
-		query.keyword = req.query.q
-		data['meta'] = {
-			title: query.keyword + " Games - Search Games",
-			description: "Search games: "+query.keyword+". Latest "+query.keyword+" games.",
-			url: process.env.PROJECT_Main+"/search?q="+req.query.q
-		}
-		data["breadcrumbs"].push(data['meta'])
-		if(req.query.page != null){
-			query.pageNum = req.query.page
-		}
-	}
-
-	async.series({
-		a: function(callback) {
-			Games.getGames(query, (ret) => {
-				if (ret) {
-					data['gamelist'] = ret
-					callback()
-				}
-			});
-		},
-		b: function(callback){
-			Games.getCategories(query, (ret) => {
-				if (ret) {
-					data['gameCategories'] = ret
-					callback()
-				}
-			});
-		},
-		c: function(callback){
-			Games.getTag(query, (ret) => {
-				if (ret) {
-					data['gameTags'] = ret
-					callback()
-				}
-			});
-		}
-	}, (err, results) => {
-
-		data['gameTagsHtml'] = `<div>`;
+exports.index = (req, res, next) => { 
+	indexController.index(req, res, next, function(err, results, data, query){
+	data['gameTagsHtml'] = `<div>`;
 		if(data['gameTags'] != null){
 			data['gameTags'].sort(() => Math.random() - 0.5)
 			for(var key in data['gameTags']){
@@ -213,61 +114,13 @@ exports.index = (req, res, next) => {
 		data['insertBreadcrumbs'] += '</div>'
 		
 		res.render("./pages/index", { theme: config.theme, query: query, data: data })
-	});
-};
+	})
+}
 
 exports.update = indexController.update
 
 exports.playgame = (req, res, next) => {
-	const query = {};
-	const data = {
-		breadcrumbs: []
-	}
-
-	// Default Meta
-	data['meta'] = {
-		title: "All Games",
-		description: this.title+": latest games, best games, all games...",
-		url: process.env.PROJECT_Main+"/"
-	}
-	data["breadcrumbs"].push(data['meta'])
-
-	if(req.params.gid != null){
-		var gid = req.params.gid
-		query.parameter = gid.split("-")
-		query.id = query.parameter[0]
-	}else{
-		res.render("./pages/notfound", { theme: config.theme, query: query, data: data })
-	}
-
-	async.series({
-		a: function(callback) {
-			Games.viewGames(query, (ret) => {
-				if (ret) {
-					data['viewGame'] = ret
-					callback()
-				}
-			});
-		},
-		b: function(callback){
-			Games.getCategories(query, (ret) => {
-				if (ret) {
-					data['gameCategories'] = ret
-					callback()
-				}
-			});
-		},
-		c: function(callback){
-			Games.getTag(query, (ret) => {
-				if (ret) {
-					data['gameTags'] = ret
-					callback()
-				}
-			});
-		}
-	}, (err, results) => {
-		
-		
+	indexController.playgame(req, res, next, function(err, results, data, query){
 		data['playGameHTML'] = `<div class="my-2">`;
 		if(data['viewGame'] != null){
 			var GameDetail = data['viewGame']
@@ -365,8 +218,5 @@ exports.playgame = (req, res, next) => {
 
 		res.render("./pages/playgame", { theme: config.theme, query: query, data: data })
 
-	});
-
-	
-	
+	})
 };
