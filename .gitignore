@@ -1,0 +1,6 @@
+.env
+package-lock.json
+vendor/
+node_modules/
+config.json
+ssl.

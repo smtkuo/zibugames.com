@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html data-theme="light">
+
+<head>
+  <% if (data.notfound==1) { %>
+    <title>Game Platform - Not Found</title>
+    <meta name="description" content="Gameplatform not found.">
+    <meta name="robots" content="noindex, follow">
+    <% }else{ %>
+      <title>Game Platform</title>
+      <meta name="description" content="Adres.link">
+      <meta name="robots" content="noindex, follow">
+      <% } %>
+        <script src="/assets/tw.js"></script>
+        <link href="/assets/daisy.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/custom.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="../assets/font-awesome-4.7.0/css/font-awesome.min.css" />
+        <meta name="viewport" content="width=device-width">
+</head>
+
+<body>
+
+
+  <!-- header -->
+  <div class="navbar shadow-lg bg-neutral text-neutral-content rounded-none flex flex-nowrap overflow-auto">
+    <div class="flex-none px-2 mx-2">
+      <a href="../" class="text-lg font-bold">
+        ZibuGames
+      </a>
+    </div>
+    <div class="flex flex-nowrap">
+      <label for="modal-search" class="btn btn-ghost btn-sm rounded-btn m-1">
+        <i class="fa fa-search m-1" aria-hidden="true"></i> Search
+      </label>
+      <label for="modal-categories" class="btn btn-ghost btn-sm rounded-btn m-1">
+        <i class="fa fa-gamepad m-1" aria-hidden="true"></i> Categories
+      </label>
+      <label for="modal-tags" class="btn btn-ghost btn-sm rounded-btn m-1">
+        <i class="fa fa-tags m-1" aria-hidden="true"></i> Tags
+      </label>
+    </div>
+  </div>
+
+<input type="checkbox" id="modal-search" class="modal-toggle" />
+<label for="modal-search" class="modal cursor-pointer">
+  <div class="modal-box relative">
+    <label for="modal-search" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+    <h3 class="text-lg font-bold">Search</h3>
+    <p class="py-4">search</p>
+  </div>
+</label>
+
+<input type="checkbox" id="modal-categories" class="modal-toggle" />
+<label for="modal-categories" class="modal cursor-pointer">
+  <div class="modal-box relative">
+    <label for="modal-categories" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+    <h3 class="text-lg font-bold">Categories</h3>
+    <p class="py-4">categories</p>
+  </div>
+</label>
+
+
+<input type="checkbox" id="modal-tags" class="modal-toggle" />
+<label for="modal-tags" class="modal cursor-pointer">
+  <div class="modal-box relative">
+    <label for="modal-tags" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+    <h3 class="text-lg font-bold">Tags</h3>
+    <p class="py-4">tags</p>
+  </div>
+</label>
+
+
+  <div class="min-h-screen bg-primary-focus">
+    <!-- end header -->
+    <div class="hidden md:block p-2">
+      <div class="alert glass shadow-lg">
+        <h1 class="card-title text-primary-content md:w-80 max-h-48 overflow-auto justify-start content-start flex-col">
+          <%- data?.meta?.title %>
+        </h1>
+        <li class="text-primary-content md:w-80 max-h-48 overflow-auto justify-start content-start flex-col">
+          <%- data?.insertBreadcrumbs %>
+        </li>
+        <h2 class="text-primary-content md:w-80 max-h-48 overflow-auto justify-start content-start flex-col">
+          <%- data?.meta?.description %>
+        </h2>
+      </div>
+    </div>
+    <div class="md:flex md:flex-row">
+
+      <div class="hidden md:block w-full md:w-1/4" style="overflow:hidden;">
+        <div class="m-2">
+          <div class="alert glass shadow-lg">
+            <div>
+              <span class="card-title text-primary-content">Categories</span>
+            </div>
+          </div>
+        </div>
+        <div class="m-2">
+          <div class="gameCategories max-h-96 overflow-auto  p-1">
+            <%- data['gameCategoriesHtml'] %>
+          </div>
+        </div>
+        <div class="m-2">
+          <div class="alert glass shadow-lg">
+            <div>
+              <span class="card-title text-primary-content">Tags</span>
+            </div>
+          </div>
+        </div>
+        <div class="m-2 max-h-96 overflow-auto p-1">
+          <div class="gameTags py-4">
+            <%- data['gameTagsHtml'] %>
+          </div>
+        </div>
+      </div>
+      <div class="flex-initial w-full md:w-3/4" style="overflow:hidden;">
+
+        <div class="m-2 hidden md:block">
+          <div
+            class="rounded-lg flex flex-row content-start place-content-start place-items-start items-center glass shadow-lg overflow-auto flex-nowrap justify-between">
+            <div class="m-1" style="padding:10px;">
+              <%- include('../../components/pagination', {query:query, data:data}) %>
+            </div>
+            <div class="m-1" style="padding:10px;min-width:150px;">
+              <form class="flex items-center" method="get" action="/search">
+                <div class="form-control">
+                  <div class="input-group">
+                    <input type="text" name="q" value="<%- query?.keyword %>" placeholder="Search…"
+                      class="input input-bordered" style="width:60%" />
+                    <button class="btn btn-square">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
