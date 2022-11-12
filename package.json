@@ -13,17 +13,33 @@
     "express": "^4.18.1",
     "formidable": "^2.0.1",
     "fs": "^0.0.1-security",
+    "gifsicle": "^5.2.1",
     "mongodb": "^4.9.1",
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",
     "mysql2": "^2.3.3",
     "nodemailer": "^6.7.8",
     "path": "^0.12.7",
+    "pngquant-bin": "^6.0.1",
+    "postcss-cli-simple": "^4.0.0",
     "request": "^2.88.2",
     "sequelize": "^6.25.2",
     "socket.io": "^4.5.2"
   },
   "devDependencies": {
+    "autoprefixer": "^10.4.13",
+    "compress-images": "^2.0.5",
+    "concurrently": "^7.0.0",
+    "daisyui": "^2.38.0",
+    "live-server": "^1.2.1",
+    "postcss": "^8.4.18",
+    "postcss-cli": "^9.1.0",
     "tailwindcss": "^3.2.1"
+  },
+  "scripts": {
+    "dev": "npx tailwindcss -i ./src/input.css -o ./public/assets/output.css --minify --watch"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   }
 }

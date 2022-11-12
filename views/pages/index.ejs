@@ -4,4 +4,8 @@
   <%- data['gameHtml'] %>
 </div>
 
+<%- include('../components/pagination', {query:query, data:data}) %>
+
+<%- data['gameSuggestionHtml'] %>
+
 <%- include('../layouts/'+ theme +'/footer', {query:query, data:data}) %>

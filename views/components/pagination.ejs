@@ -5,15 +5,15 @@
         <div class="flex pagination justify-center justify-items-center items-center place-content-center w-full py-4">
             <div class="btn-group">
                 <a class="btn glass">Page 1</a>
-                <a href="/cat/<%- query.categorysearch.replace(' ','-') %>/2" class="btn glass">»</a>
+                <a href="<%- process.env.PROJECT_Main %>/cat/<%- query.categorysearch.replace(' ','-') %>/2" class="btn glass">»</a>
                 </div>
         </div>
         <% }else if(query.pageNum>1){ %>
         <div class="flex pagination justify-center justify-items-center items-center place-content-center w-full py-4">
             <div class="btn-group"> 
-                <a href="/cat/<%- query.categorysearch.replace(' ','-') %>/<%- (parseInt(query.pageNum)-1) %>" class="btn glass">«</a>
+                <a href="<%- process.env.PROJECT_Main %>/cat/<%- query.categorysearch.replace(' ','-') %>/<%- (parseInt(query.pageNum)-1) %>" class="btn glass">«</a>
                 <a class="btn glass">Page <%- query.pageNum %></a>
-                <a href="/cat/<%- query.categorysearch.replace(' ','-') %>/<%- (parseInt(query.pageNum)+1) %>" class="btn glass">»</a>
+                <a href="<%- process.env.PROJECT_Main %>/cat/<%- query.categorysearch.replace(' ','-') %>/<%- (parseInt(query.pageNum)+1) %>" class="btn glass">»</a>
             </div>
         </div>
         <% } %>
@@ -22,15 +22,15 @@
         <div class="flex pagination justify-center justify-items-center items-center place-content-center w-full py-4">
             <div class="btn-group">
                 <a class="btn glass">Page 1</a>
-                <a href="/tag/<%- query.tagsearch.replace(' ','-') %>/2" class="btn glass">»</a>
+                <a href="<%- process.env.PROJECT_Main %>/tag/<%- query.tagsearch.replace(' ','-') %>/2" class="btn glass">»</a>
                 </div>
         </div>
         <% }else if(query.pageNum>1){ %>
         <div class="flex pagination justify-center justify-items-center items-center place-content-center w-full py-4">
             <div class="btn-group"> 
-                <a href="/tag/<%- query.tagsearch.replace(' ','-') %>/<%- (parseInt(query.pageNum)-1) %>" class="btn glass">«</a>
+                <a href="<%- process.env.PROJECT_Main %>/tag/<%- query.tagsearch.replace(' ','-') %>/<%- (parseInt(query.pageNum)-1) %>" class="btn glass">«</a>
                 <a class="btn glass">Page <%- query.pageNum %></a>
-                <a href="/tag/<%- query.tagsearch.replace(' ','-') %>/<%- (parseInt(query.pageNum)+1) %>" class="btn glass">»</a>
+                <a href="<%- process.env.PROJECT_Main %>/tag/<%- query.tagsearch.replace(' ','-') %>/<%- (parseInt(query.pageNum)+1) %>" class="btn glass">»</a>
             </div>
         </div>
         <% } %>
@@ -39,15 +39,15 @@
             <div class="flex pagination justify-center justify-items-center items-center place-content-center w-full py-4">
                 <div class="btn-group">
                     <a class="btn glass">Page 1</a>
-                    <a href="/search?q=<%- query.keyword.replace(' ','-') %>&page=2" class="btn glass">»</a>
+                    <a href="<%- process.env.PROJECT_Main %>/search?q=<%- query.keyword.replace(' ','-') %>&page=2" class="btn glass">»</a>
                     </div>
             </div>
         <% }else if(query.pageNum>1){ %>
             <div class="flex pagination justify-center justify-items-center items-center place-content-center w-full py-4">
                 <div class="btn-group"> 
-                    <a href="/search?q=<%- query.keyword.replace(' ','-') %>&page=<%- (parseInt(query.pageNum)-1) %>" class="btn glass">«</a>
+                    <a href="<%- process.env.PROJECT_Main %>/search?q=<%- query.keyword.replace(' ','-') %>&page=<%- (parseInt(query.pageNum)-1) %>" class="btn glass">«</a>
                     <a class="btn glass">Page <%- query.pageNum %></a>
-                    <a href="/search?q=<%- query.keyword.replace(' ','-') %>&page=<%- (parseInt(query.pageNum)+1) %>" class="btn glass">»</a>
+                    <a href="<%- process.env.PROJECT_Main %>/search?q=<%- query.keyword.replace(' ','-') %>&page=<%- (parseInt(query.pageNum)+1) %>" class="btn glass">»</a>
                 </div>
             </div>
         <% } %>
@@ -56,15 +56,15 @@
         <div class="flex pagination justify-center justify-items-center items-center place-content-center w-full py-4">
             <div class="btn-group">
                 <a class="btn glass">Page 1</a>
-                <a href="/page-2" class="btn glass">»</a>
+                <a href="<%- process.env.PROJECT_Main %>/page-2" class="btn glass">»</a>
                 </div>
         </div>
         <% }else if(query.pageNum>1){ %>
         <div class="flex pagination justify-center justify-items-center items-center place-content-center w-full py-4">
             <div class="btn-group"> 
-                <a href="/page-<%- (parseInt(query.pageNum)-1) %>" class="btn glass">«</a>
+                <a href="<%- process.env.PROJECT_Main %>/page-<%- (parseInt(query.pageNum)-1) %>" class="btn glass">«</a>
                 <a class="btn glass">Page <%- query.pageNum %></a>
-                <a href="/page-<%- (parseInt(query.pageNum)+1) %>" class="btn glass">»</a>
+                <a href="<%- process.env.PROJECT_Main %>/page-<%- (parseInt(query.pageNum)+1) %>" class="btn glass">»</a>
             </div>
         </div>
         <% } %>

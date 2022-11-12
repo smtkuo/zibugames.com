@@ -1,6 +1,3 @@
-
-
-<%- include('../../components/pagination', {query:query, data:data}) %>
 </div>
 </div>
 <!-- footer -->
@@ -25,7 +22,14 @@
     </div>
   </footer>
   <!-- end footer -->
-
+<script src="<%- process.env.PROJECT_Main %>/assets/jquery.min.js"></script>
+<script src="<%- process.env.PROJECT_Main %>/assets/lazyload.min.js"></script>
+<link href="<%- process.env.PROJECT_Main %>/assets/custom.css" rel="stylesheet" type="text/css" />
+<script>
+  let images = document.querySelectorAll(".lazyload");
+  console.log(images)
+  lazyload(images);
+</script>
 
 </body>
 </html>

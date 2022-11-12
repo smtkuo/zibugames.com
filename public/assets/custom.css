@@ -17,3 +17,18 @@
   ::-webkit-scrollbar-thumb:hover {
     background: #555; 
   }
+  .loadContent{
+    display:block;
+  }
+  .leftmenu{
+    height: 100%; overflow: auto; position: -webkit-sticky; position: sticky; top: 0%;
+  }
+  .leftmenusticky{
+    overflow:auto;max-height:900px;padding-bottom:500px;-ms-overflow-style: none; scrollbar-width: none;
+  }
+  .leftmenusticky::-webkit-scrollbar{
+    display: none;
+  }
+  .headermenu{
+    position: -webkit-sticky; position: sticky; top: 0%;
+  }
